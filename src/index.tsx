@@ -1,7 +1,8 @@
 import { NativeModules } from 'react-native';
 
 type EasyPayType = {
-  multiply(a: number, b: number): Promise<number>;
+  alipay(orderInfo: string, cb: (result: any) => void): void;
+  setAlipayScheme(scheme: string): void;
 };
 
 const { EasyPay } = NativeModules;

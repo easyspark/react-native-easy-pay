@@ -1,9 +1,11 @@
 package com.reactnativeeasypay
 
-import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.ReactContextBaseJavaModule
-import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.*
+import java.lang.Runnable
+import com.facebook.react.bridge.WritableMap
+
+import com.alipay.sdk.app.PayTask
+
 
 class EasyPayModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
@@ -11,14 +13,23 @@ class EasyPayModule(reactContext: ReactApplicationContext) : ReactContextBaseJav
         return "EasyPay"
     }
 
-    // Example method
-    // See https://reactnative.dev/docs/native-modules-android
     @ReactMethod
-    fun multiply(a: Int, b: Int, promise: Promise) {
-    
-      promise.resolve(a * b)
-    
+    fun setAlipayScheme(scheme:String) {
+      return
     }
 
-    
+    @ReactMethod
+    fun alipay(orderInfo:String, promise: Callback) {
+      val payRunnable = Runnable {
+        val alipay = PayTask(currentActivity)
+        val result = alipay.payV2(orderInfo, true)
+        val map = Arguments.createMap()
+        map.putString("memo", result["memo"])
+        map.putString("result", result["result"])
+        map.putString("resultStatus", result["resultStatus"])
+        promise.invoke(map)
+      }
+      val payThread = Thread(payRunnable)
+      payThread.start()
+    }
 }

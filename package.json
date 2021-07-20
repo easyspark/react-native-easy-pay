@@ -1,6 +1,6 @@
 {
   "name": "react-native-easy-pay",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Wechat And Alipay",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

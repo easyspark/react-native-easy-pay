@@ -33,9 +33,9 @@ android {
     targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
     versionCode 1
     versionName "1.0"
-    
+
   }
-  
+
   buildTypes {
     release {
       minifyEnabled false
@@ -126,5 +126,7 @@ def kotlin_version = getExtOrDefault('kotlinVersion')
 dependencies {
   // noinspection GradleDynamicVersion
   api 'com.facebook.react:react-native:+'
+  implementation files('libs/alipaysdk-15.8.03.210428205839.aar')
+  implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
