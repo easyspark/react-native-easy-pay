@@ -48,18 +48,12 @@ android {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
   }
-  repositories {
-    flatDir {
-      dirs 'libs'
-    }
-  }
 }
 
 repositories {
   mavenCentral()
   jcenter()
   google()
-
   def found = false
   def defaultDir = null
   def androidSourcesName = 'React Native sources'
@@ -131,7 +125,7 @@ def kotlin_version = getExtOrDefault('kotlinVersion')
 dependencies {
   // noinspection GradleDynamicVersion
   api 'com.facebook.react:react-native:+'
-  implementation files('libs/alipaysdk-15.8.03.210428205839.aar')
+  implementation fileTree(dir: 'libs', include: ['*.aar'])
   api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
