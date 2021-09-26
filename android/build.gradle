@@ -125,8 +125,8 @@ def kotlin_version = getExtOrDefault('kotlinVersion')
 dependencies {
   // noinspection GradleDynamicVersion
   api 'com.facebook.react:react-native:+'
-
+  implementation (name: 'alipaysdk-15.8.03.210428205839', ext: 'aar')
   api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
+
 }
